@@ -142,6 +142,8 @@ void print_binary(char buffer[], size_t *buff_pos, unsigned int var_uint)
 	char temp[100];
 	int rem, i = 0, j = 0;
 
+	if (var_uint == 0)
+		buffer[(*buff_pos)++] = 0;
 	while (var_uint > 0)
 	{
 		rem = var_uint % 2;
