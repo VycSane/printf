@@ -66,7 +66,7 @@ char get_fmt_specifier(const char *str, size_t i)
 {
 	char char_to_test = str[++i];
 	size_t j = 0;
-	char *specs = "cs%dob";
+	char *specs = "cs%dib";
 	size_t specs_len = strlen(specs);
 
 	for (j = 0; j < specs_len; j++)
