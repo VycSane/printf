@@ -89,7 +89,6 @@ void print_fmt(char buffer[], size_t *buff_pos, char curr_spec, va_list args)
 	char *var_str, var_char;
 	size_t len, i;
 	int var_int;
-	unsigned int var_uint;
 
 	if (curr_spec == 'i')
 		curr_spec = 'd';

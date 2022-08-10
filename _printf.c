@@ -16,7 +16,7 @@ int _printf(const char *format, ...)
 {
 	char buffer[1024];
 	size_t buff_pos = 0;
-	size_t i, fmt_strlen, count = 0;
+	size_t i, fmt_strlen;
 	char c, curr_spec;
 	int buff_strlen = 0;
 	va_list args;
