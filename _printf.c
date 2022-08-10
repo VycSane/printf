@@ -15,7 +15,7 @@
 int _printf(const char *format, ...)
 {
 	char buffer[1024];
-	size_t buffer_pos = 0;
+	size_t buff_pos = 0;
 	size_t i, fmt_strlen, count = 0;
 	char c, curr_spec;
 	int buff_strlen = 0;
@@ -30,21 +30,21 @@ int _printf(const char *format, ...)
 		c = format[i];
 		if (c != '%')
 		{
-			buffer[buffer_pos++] = c;
+			buffer[buff_pos++] = c;
 		}
 		else if (c == '%')
 		{
 			curr_spec = get_fmt_specifier(format, i);
 			if (!curr_spec)
 			{
-				buffer[buffer_pos++] = c;
+				buffer[buff_pos++] = c;
 				continue;
 			}
 			i++;
-			print_fmt(buffer, &buffer_pos, curr_spec, args);
+			print_fmt(buffer, &buff_pos, curr_spec, args);
 		}
 	}
-	buffer[buffer_pos] = '\0';
+	buffer[buff_pos] = '\0';
 	buff_strlen = strlen(buffer);
 	write(STDOUT, buffer, buff_strlen);
 	va_end(args);

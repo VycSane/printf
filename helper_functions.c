@@ -28,17 +28,17 @@ size_t num_digits(int num)
 /**
  * print_num - prints a number
  * @buffer: the specified buffer
- * @buffer_pos: the current index of the buffer
+ * @buff_pos: the current index of the buffer
  * @num: the number
  */
-void print_num(char buffer[], size_t *buffer_pos, int num)
+void print_num(char buffer[], size_t *buff_pos, int num)
 {
 	size_t digit_count = num_digits(num), divisor = 1;
 	size_t i, res, num_cpy;
 
 	if (num < 0)
 	{
-		buffer[(*buffer_pos)++] = '-';
+		buffer[(*buff_pos)++] = '-';
 		num_cpy = (size_t) (num * (-1));
 	}
 	else
@@ -50,7 +50,7 @@ void print_num(char buffer[], size_t *buffer_pos, int num)
 	for (i = 0; i < digit_count; i++)
 	{
 		res = num_cpy / divisor;
-		buffer[(*buffer_pos)++] = '0' + (res % 10);
+		buffer[(*buff_pos)++] = '0' + (res % 10);
 		divisor /= 10;
 	}
 }
@@ -80,11 +80,11 @@ char get_fmt_specifier(const char *str, size_t i)
 /**
  * print_fmt - prints the arg of a format type
  * @buffer: the specified buffer
- * @buffer_pos: the current index of the buffer
+ * @buff_pos: the current index of the buffer
  * @curr_spec: the current specifier being checked
  * @args: list of variable args
  */
-void print_fmt(char buffer[], size_t *buffer_pos, char curr_spec, va_list args)
+void print_fmt(char buffer[], size_t *buff_pos, char curr_spec, va_list args)
 {
 	char *var_str, var_char;
 	size_t len, i;
@@ -97,19 +97,19 @@ void print_fmt(char buffer[], size_t *buffer_pos, char curr_spec, va_list args)
 	{
 		case 'c':
 			var_char = va_arg(args, int);
-			buffer[(*buffer_pos)++] = var_char;
+			buffer[(*buff_pos)++] = var_char;
 			break;
 		case 's':
 			var_str = va_arg(args, char *);
 			len = strlen(var_str);
 			for (i = 0; i < len; i++)
-				buffer[(*buffer_pos)++] = var_str[i];
+				buffer[(*buff_pos)++] = var_str[i];
 			break;
 		case 'd':
 			var_int = va_arg(args, int);
-			print_num(buffer, buffer_pos, var_int);
+			print_num(buffer, buff_pos, var_int);
 			break;
 		case '%':
-			buffer[(*buffer_pos)++] = '%';
+			buffer[(*buff_pos)++] = '%';
 	}
 }
