@@ -1,8 +1,10 @@
 #include <stdlib.h>
+#include <stddef.h>
 #include <string.h>
 #include <stdarg.h>
 #include <unistd.h>
 #include "main.h"
+#define STDOUT 1
 /**
  * _printf - prints a formatted string
  * @format: the string to be formatted
@@ -14,7 +16,7 @@ int _printf(const char *format, ...)
 {
 	char buffer[1024];
 	size_t buffer_pos = 0;
-	size_t i, fmt_strlen,count = 0;
+	size_t i, fmt_strlen, count = 0;
 	char c, curr_spec;
 	int buff_strlen = 0;
 	va_list args;
@@ -23,7 +25,7 @@ int _printf(const char *format, ...)
 		exit(98);
 	fmt_strlen = strlen(format);
 	va_start(args, format);
-	for (i = 0; i <fmt_strlen; i++)
+	for (i = 0; i < fmt_strlen; i++)
 	{
 		c = format[i];
 		if (c != '%')
