@@ -8,4 +8,6 @@ void print_num(char buffer[], size_t *buff_pos, int num);
 char get_fmt_specifier(const char *str, size_t i);
 void print_fmt(char buffer[], size_t *buff_pos, char curr_spec, va_list args);
 int _printf(const char *format, ...);
+void rev_string(char *s);
+void print_binary(char buffer[], size_t *buff_pos, unsigned int var_uint);
 #endif /* MAIN_H */

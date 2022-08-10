@@ -45,7 +45,7 @@ int _printf(const char *format, ...)
 		}
 	}
 	buffer[buff_pos] = '\0';
-	buff_strlen = strlen(buffer);
+	buff_strlen = (int) strlen(buffer);
 	write(STDOUT, buffer, buff_strlen);
 	va_end(args);
 	return (buff_strlen);
