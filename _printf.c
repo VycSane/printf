@@ -42,6 +42,7 @@ int _printf(const char *format, ...)
 			}
 			i++;
 			print_fmt(buffer, &buff_pos, curr_spec, args);
+			custom_fmt(buffer, &buff_pos, curr_spec, args);
 		}
 	}
 	buffer[buff_pos] = '\0';
@@ -50,4 +51,3 @@ int _printf(const char *format, ...)
 	va_end(args);
 	return (buff_strlen);
 }
-

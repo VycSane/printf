@@ -10,4 +10,6 @@ void print_fmt(char buffer[], size_t *buff_pos, char curr_spec, va_list args);
 int _printf(const char *format, ...);
 void rev_string(char *s);
 void print_binary(char buffer[], size_t *buff_pos, unsigned int var_uint);
+void custom_fmt(char buffer[], size_t *buff_pos, char curr_spec, va_list args);
+void _oct(char buffer[], size_t *buff_pos, unsigned int var_uint);
 #endif /* MAIN_H */
