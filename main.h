@@ -12,9 +12,9 @@ void rev_string(char *s);
 void print_binary(char buffer[], size_t *buff_pos, unsigned int var_uint);
 void custom_fmt(char buffer[], size_t *buff_pos, char curr_spec, va_list args);
 void _oct(char buffer[], size_t *buff_pos, unsigned int var_uint);
-int get_flag(char s, flags_t *f);
-int print_bigS(va_list l, flags_t *f);
-int print_rev(va_list l, flags_t *f);
-int print_rot13(va_list l, flags_t *f);
-int print_percent(va_list l, flags_t *f);
+int get_flag(char s, size_t *f);
+int print_bigS(va_list l, size_t *f);
+int print_rev(va_list l, size_t *f);
+int print_rot13(va_list l, size_t *f);
+int print_percent(va_list l, size_t *f);
 #endif /* MAIN_H */
