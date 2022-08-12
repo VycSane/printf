@@ -12,4 +12,5 @@ void rev_string(char *s);
 void print_binary(char buffer[], size_t *buff_pos, unsigned int var_uint);
 void custom_fmt(char buffer[], size_t *buff_pos, char curr_spec, va_list args);
 void _oct(char buffer[], size_t *buff_pos, unsigned int var_uint);
+int get_flag(char s, flags_t *f);
 #endif /* MAIN_H */
