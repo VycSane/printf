@@ -14,7 +14,7 @@
  */
 int _printf(const char *format, ...)
 {
-	char buffer[1024];
+	char buffer[2024];
 	size_t buff_pos = 0;
 	size_t i, fmt_strlen;
 	char c, curr_spec;

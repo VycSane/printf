@@ -126,6 +126,8 @@ void print_fmt(char buffer[], size_t *buff_pos, char curr_spec, va_list args)
 			break;
 		case 's':
 			var_str = va_arg(args, char *);
+			if (var_str == NULL)
+				var_str = "(null)";
 			len = strlen(var_str);
 			for (i = 0; i < len; i++)
 				buffer[(*buff_pos)++] = var_str[i];
