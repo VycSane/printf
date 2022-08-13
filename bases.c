@@ -3,64 +3,37 @@
 #include <string.h>
 #include <unistd.h>
 #include "main.h"
+#include <stdio.h>
 /**
- * _hex - converts decimal to hexadecimal
- * @buffer: the buffer arg
- * @buff_pos: the buffer current index
+ * dec_base - converts a decimal number to a specified base
  * @var_uint: the number
+ * @base: base to convert to
+ * @hex_form: how to format hex letters
+ *
+ * Return: the new base as string
  */
-void _hex(char buffer[], size_t *buff_pos, unsigned int var_uint);
-/**
- * _oct - converys decimal to octal
- * @buffer: the buffer arg
- * @buff_pos: the buffer current index
- * @var_uint: the number
- */
-void _oct(char buffer[], size_t *buff_pos, unsigned int var_uint)
+char *dec_base(size_t var_uint, size_t base, size_t hex_form)
 {
-	char temp[100];
-	int rem, i = 0, j = 0;
+	char *temp, tmp;
+	size_t rem, i = 0, j = 0;
 
+	temp = malloc(100);
+	if (temp == NULL)
+		exit(1);
 	if (var_uint == 0)
-		buffer[(*buff_pos)++] = '0';
+		temp[i++] = '0';
 	while (var_uint > 0)
 	{
-		rem = var_uint % 8;
-		var_uint /= 8;
-		temp[i++] = '0' + rem;
-		j++;
+		rem = var_uint % base;
+		var_uint /= base;
+		if (rem > 9 && hex_form == 1)
+			temp[i++] = 65 + rem - 10;
+		if (rem > 9 && hex_form == 2)
+			temp[i++] = 97 + rem - 10;
+		else
+			temp[i++] = '0' + rem;
 	}
 	temp[i] = '\0';
-	while (j > 0)
-	{
-		buffer[(*buff_pos)++] = temp[j - 1];
-		j--;
-	}
-}
-/**
- * print_binary - prints a decimal number in binary format
- * @buffer: the buffer arg
- * @buff_pos: the buffer current index
- * @var_uint: the number
- */
-void print_binary(char buffer[], size_t *buff_pos, unsigned int var_uint)
-{
-	char temp[100];
-	int rem, i = 0, j = 0;
-
-	if (var_uint == 0)
-		buffer[(*buff_pos)++] = '0';
-	while (var_uint > 0)
-	{
-		rem = var_uint % 2;
-		var_uint /= 2;
-		temp[i++] = '0' + rem;
-		j++;
-	}
-	temp[i] = '\0';
-	while (j > 0)
-	{
-		buffer[(*buff_pos)++] = temp[j - 1];
-		j--;
-	}
+	rev_string(temp);
+	return (temp);
 }
