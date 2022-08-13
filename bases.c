@@ -2,7 +2,7 @@
 #include <stdarg.h>
 #include <string.h>
 #include <unistd.h>
-#include "lists.h"
+#include "main.h"
 /**
  * _hex - converts decimal to hexadecimal
  * @buffer: the buffer arg

@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdarg.h>
 #include <unistd.h>
-#include "lists.h"
+#include "main.h"
 #define STDOUT 1
 /**
  * _printf - prints a formatted string
