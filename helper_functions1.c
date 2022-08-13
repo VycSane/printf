@@ -6,7 +6,9 @@
 /**
  * custom_fmt - prints the arg of a format type
  * @buffer: the specified buffer
- * @buff_pos: the current index of the buffer      * @curr_spec: the current specifier being checked * @args: list of variable args
+ * @buff_pos: the current index of the buffer
+ * @curr_spec: the current specifier being checked
+ * @args: list of variable args
  */
 void custom_fmt(char buffer[], size_t *buff_pos, char curr_spec, va_list args)
 {
