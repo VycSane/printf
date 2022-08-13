@@ -118,6 +118,8 @@ void print_fmt(char buffer[], size_t *buff_pos, char curr_spec, va_list args)
 	{
 		case 'c':
 			var_char = va_arg(args, int);
+			if (var_char == '\0')
+				(*buff_pos)++;
 			buffer[(*buff_pos)++] = var_char;
 			break;
 		case 'o':
@@ -136,6 +138,9 @@ void print_fmt(char buffer[], size_t *buff_pos, char curr_spec, va_list args)
 			var_int = va_arg(args, int);
 			print_num(buffer, buff_pos, var_int);
 			break;
+		case 'u':
+			var_uint = va_arg(args, unsigned int);
+			print_num(buffer, buff_pos, var_int);
 		case '%':
 			buffer[(*buff_pos)++] = '%';
 	}

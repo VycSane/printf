@@ -32,6 +32,10 @@ int _printf(const char *format, ...)
 		{
 			buffer[buff_pos++] = c;
 		}
+		else if(c == '%' && format[i + 1] == '\0')
+		{
+			return (-1);
+		}
 		else if (c == '%')
 		{
 			curr_spec = get_fmt_specifier(format, i);
