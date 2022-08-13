@@ -32,7 +32,7 @@ int _printf(const char *format, ...)
 		{
 			buffer[buff_pos++] = c;
 		}
-		else if(c == '%' && format[i + 1] == '\0')
+		else if (c == '%' && format[i + 1] == '\0')
 		{
 			return (-1);
 		}
