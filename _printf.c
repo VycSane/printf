@@ -4,7 +4,6 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include "main.h"
-#include <stdio.h>
 #define STDOUT 1
 /**
  * _printf - prints a formatted string
@@ -15,17 +14,16 @@
  */
 int _printf(const char *format, ...)
 {
-	size_t buff_pos = 0, i, j = 0, fmt_strlen;
-	char *buffer, *tmp_buff, c, curr_spec;
-	size_t buff_strlen = 0;
+	char buffer[1024];
+	size_t buff_pos = 0;
+	size_t i, fmt_strlen;
+	char c, curr_spec;
+	int buff_strlen = 0;
 	va_list args;
 
 	if (format == NULL)
 		exit(98);
 	fmt_strlen = strlen(format);
-	buffer = malloc(2024);
-	if (buffer == NULL)
-		exit(99);
 	va_start(args, format);
 	for (i = 0; i < fmt_strlen; i++)
 	{
@@ -33,10 +31,6 @@ int _printf(const char *format, ...)
 		if (c != '%')
 		{
 			buffer[buff_pos++] = c;
-		}
-		else if (c == '%' && format[i + 1] == '\0')
-		{
-			return (-1);
 		}
 		else if (c == '%')
 		{
@@ -47,19 +41,13 @@ int _printf(const char *format, ...)
 				continue;
 			}
 			i++;
-			tmp_buff = std_fmt(curr_spec, args);
-			for (j = 0; tmp_buff[j] != '\0'; j++)
-				buffer[buff_pos++] = tmp_buff[j];
-			free(tmp_buff);
-			tmp_buff = custom_fmt(curr_spec, args);
-			for (j = 0; tmp_buff[j] != '\0'; j++)
-				buffer[buff_pos++] = tmp_buff[j];
-			free(tmp_buff);
+			print_fmt(buffer, &buff_pos, curr_spec, args);
+			custom_fmt(buffer, &buff_pos, curr_spec, args);
 		}
 	}
-	buff_strlen = strlen(buffer);
+	buffer[buff_pos] = '\0';
+	buff_strlen = (int) strlen(buffer);
 	write(STDOUT, buffer, buff_strlen);
-	free(buffer);
 	va_end(args);
 	return (buff_strlen);
 }

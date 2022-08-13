@@ -3,7 +3,6 @@
 #include <string.h>
 #include <unistd.h>
 #include "main.h"
-#include <stdio.h>
 /**
  * num_digits - counts the number of digits in a number
  * @num: the number
@@ -81,8 +80,8 @@ char get_fmt_specifier(const char *str, size_t i)
 {
 	char char_to_test = str[++i];
 	size_t j = 0;
-	char *specs = "cs%diouxp";
-	char *cus_specs = "bXRr";
+	char *specs = "cs%diou";
+	char *cus_specs = "b";
 	size_t cus_specs_len = strlen(cus_specs);
 	size_t specs_len = strlen(specs);
 
@@ -100,57 +99,42 @@ char get_fmt_specifier(const char *str, size_t i)
 }
 
 /**
- * std_fmt - prints the arg of a format type
+ * print_fmt - prints the arg of a format type
+ * @buffer: the specified buffer
+ * @buff_pos: the current index of the buffer
  * @curr_spec: the current specifier being checked
  * @args: list of variable args
- *
- * Return: a pointer to a string
  */
-char *std_fmt(char curr_spec, va_list args)
+void print_fmt(char buffer[], size_t *buff_pos, char curr_spec, va_list args)
 {
-	char *buffer;
-	size_t buff_pos = 0;
 	char *var_str, var_char;
 	size_t len, i;
 	int var_int;
 	unsigned int var_uint;
 
-	buffer = malloc(2024);
-	if (buffer == NULL)
-		exit(1);
 	if (curr_spec == 'i')
 		curr_spec = 'd';
 	switch (curr_spec)
 	{
 		case 'c':
 			var_char = va_arg(args, int);
-			if (var_char == '\0')
-				var_char = ' ';
-			buffer[buff_pos++] = var_char;
-			break;
-		case 's':
-			var_str = va_arg(args, char *);
-			if (var_str == NULL)
-				var_str = "(null)";
-			len = strlen(var_str);
-			for (i = 0; i < len; i++)
-				buffer[buff_pos++] = var_str[i];
-			break;
-		case 'd':
-			var_int = va_arg(args, int);
-			print_num(buffer, &buff_pos, var_int);
+			buffer[(*buff_pos)++] = var_char;
 			break;
 		case 'o':
 			var_uint = va_arg(args, unsigned int);
-			buffer = dec_base(var_uint, 8, 1);
+			_oct(buffer, buff_pos, var_uint);
 			break;
-		case 'x':
-			var_uint = va_arg(args, unsigned int);
-			buffer = dec_base(var_uint, 16, 2);
+		case 's':
+			var_str = va_arg(args, char *);
+			len = strlen(var_str);
+			for (i = 0; i < len; i++)
+				buffer[(*buff_pos)++] = var_str[i];
+			break;
+		case 'd':
+			var_int = va_arg(args, int);
+			print_num(buffer, buff_pos, var_int);
 			break;
 		case '%':
-			buffer[buff_pos++] = '%';
+			buffer[(*buff_pos)++] = '%';
 	}
-	buffer[buff_pos] = '\0';
-	return (buffer);
 }
