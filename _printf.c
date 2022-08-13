@@ -15,9 +15,9 @@
  */
 int _printf(const char *format, ...)
 {
-	size_t buff_pos = 0, i, fmt_strlen;
+	size_t buff_pos = 0, i, j = 0, fmt_strlen;
 	char *buffer, *tmp_buff, c, curr_spec;
-	size_t buff_strlen = 0, tmp_buff_strlen = 0;
+	size_t buff_strlen = 0;
 	va_list args;
 
 	if (format == NULL)
@@ -48,11 +48,11 @@ int _printf(const char *format, ...)
 			}
 			i++;
 			tmp_buff = std_fmt(curr_spec, args);
-			for (int j = 0; tmp_buff[j] != '\0'; j++)
+			for (j = 0; tmp_buff[j] != '\0'; j++)
 				buffer[buff_pos++] = tmp_buff[j];
 			free(tmp_buff);
 			tmp_buff = custom_fmt(curr_spec, args);
-			for (int j = 0; tmp_buff[j] != '\0'; j++)
+			for (j = 0; tmp_buff[j] != '\0'; j++)
 				buffer[buff_pos++] = tmp_buff[j];
 			free(tmp_buff);
 		}

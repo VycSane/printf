@@ -14,8 +14,8 @@
  */
 char *dec_base(size_t var_uint, size_t base, size_t hex_form)
 {
-	char *temp, tmp;
-	size_t rem, i = 0, j = 0;
+	char *temp;
+	size_t rem, i = 0;
 
 	temp = malloc(100);
 	if (temp == NULL)
