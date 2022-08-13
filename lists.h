@@ -1,5 +1,5 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef LISTS_H
+#define LISTS_H
 #include <stddef.h>
 #include <stdarg.h>
 void _putchar(const char c);
@@ -17,4 +17,4 @@ int print_bigS(va_list l, size_t *f);
 int print_rev(va_list l, size_t *f);
 int print_rot13(va_list l, size_t *f);
 int print_percent(va_list l, size_t *f);
-#endif /* MAIN_H */
+#endif /* LISTS_H */

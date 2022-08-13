@@ -2,7 +2,7 @@
 #include <stdarg.h>
 #include <string.h>
 #include <unistd.h>
-#include "main.h"
+#include "lists.h"
 /**
  * custom_fmt - prints the arg of a format type
  * @buffer: the specified buffer

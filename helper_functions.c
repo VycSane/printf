@@ -2,7 +2,7 @@
 #include <stdarg.h>
 #include <string.h>
 #include <unistd.h>
-#include "main.h"
+#include "lists.h"
 /**
  * num_digits - counts the number of digits in a number
  * @num: the number
